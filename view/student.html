@@ -1,0 +1,150 @@
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" ng-switch="view">
+    <div ng-switch-default>
+
+        <div class="row">
+            <ol class="breadcrumb">
+                <li><a href="#">
+                    <svg class="glyph stroked home">
+                        <use xlink:href="#stroked-home"></use>
+                    </svg>
+                </a></li>
+                <li class="active">Icons</li>
+            </ol>
+        </div><!--/.row-->
+
+        <br>
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-lg-3">
+                <div class="panel panel-teal panel-widget">
+                    <div class="row no-padding">
+                        <div class="col-sm-3 col-lg-5 widget-left">
+                            <svg class="glyph stroked male-user">
+                                <use xlink:href="#stroked-male-user"></use>
+                            </svg>
+                        </div>
+                        <div class="col-sm-9 col-lg-7 widget-right">
+                            <div class="large">{{rowCollection.length}}</div>
+                            <div class="text-muted">Total Number Of Teachers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.row-->
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Teacher List</div>
+                    <div class="panel-body">
+                        <table st-table="DisplayedCollection" st-safe-src="rowCollection" class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th st-sort="NumberOfStudent">NumberOfStudent</th>
+                                <th st-sort="NumberOfClass">NumberOfClass</th>
+                                <th>Profile</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr st-select-row="row" ng-repeat="row in DisplayedCollection">
+                                <td>{{row.name}}</td>
+                                <td>{{row.NumberOfStudent}}</td>
+                                <td>{{row.NumberOfClass}}</td>
+                                <td>
+                                    <button type="button" ng-click="removeRow(row)" class="btn btn-sm btn">
+                                        <i class="glyphicon glyphicon-arrow-right">
+                                        </i>
+                                    </button>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.row-->
+
+        <div class="row">
+            <div align="right" class="col-lg-12">
+                <button ng-click='viewAdd()' type="submit" class="btn btn-primary">Add Class</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div ng-switch-when="add">
+        <div class="row">
+            <ol class="breadcrumb">
+                <li><a href="#">
+                    <svg class="glyph stroked home">
+                        <use xlink:href="#stroked-home"></use>
+                    </svg>
+                </a></li>
+                <li class="active">Icons</li>
+            </ol>
+        </div><!--/.row-->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Dashboard</h1>
+            </div>
+        </div><!--/.row-->
+
+        <div class="row" ng-show="showAlert">
+            <div class="col-lg-12">
+                <div class="alert alert-danger" role="alert">
+                    <strong>Oh snap!</strong> {{AlertMessage}}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-lg-6">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input class="form-control" ng-model="newTeacherInfo.userInfo.name ">
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" ng-model="newTeacherInfo.userInfo.password" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" ng-model="newTeacherInfo.userInfo.name ">
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="form-group">
+                    <label>School</label>
+                    <select class="form-control" ng-model="$parent.selectedTeacher">
+                        <option ng-repeat="t in listTeacher" value={{t.name}}>{{t.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="form-group">
+                    <label>Teacher Name</label>
+                    <select class="form-control" ng-model="$parent.selectedTeacher">
+                        <option ng-repeat="t in listTeacher" value={{t.name}}>{{t.name}}</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="row">
+            <div align="center" class="col-lg-12">
+                <button ng-click='viewMain()' type="submit" class="btn btn-warning"> Back</button>
+                <button ng-click='submitAdd()' type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>    <!--/.main-->
+
